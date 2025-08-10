@@ -22,4 +22,4 @@ body:
     attributes:
       label: ✅ Definition of Done
       options:
-        - label: `docker run`으로 앱 기동 및 `/actuator/health` 확인.
+        - label: '`docker run`으로 앱 기동 및 `/actuator/health` 확인.'
