@@ -1,0 +1,25 @@
+name: Task - T0-2
+description: 기본 의존성 구성
+title: "[T0-2] 기본 의존성 구성"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        Spring Web, Validation, Spring Data JPA, PostgreSQL Driver, Actuator, Testcontainers.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - 의존성 목록 업데이트, `application-local.yaml`.
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 빈 컨텍스트 로드 테스트 통과.

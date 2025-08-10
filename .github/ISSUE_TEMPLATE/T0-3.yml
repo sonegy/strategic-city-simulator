@@ -1,0 +1,25 @@
+name: Task - T0-3
+description: Docker 빌드 파이프라인(로컬)
+title: "[T0-3] Docker 빌드 파이프라인(로컬)"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        경량 `Dockerfile`(distroless/temurin), multi-stage build.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - `Dockerfile`, `docker-compose.yml`(local pg 포함 선택).
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: `docker run`으로 앱 기동 및 `/actuator/health` 확인.

@@ -1,0 +1,25 @@
+name: Task - T1-2
+description: 마이그레이션 도구 도입(Flyway)
+title: "[T1-2] 마이그레이션 도구 도입(Flyway)"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        Flyway 베이스라인 및 V1__init.sql 작성.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - `/resources/db/migration/V1__init.sql`.
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 앱 기동 시 마이그레이션 성공 로그

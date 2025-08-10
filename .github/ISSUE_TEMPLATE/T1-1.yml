@@ -1,0 +1,26 @@
+name: Task - T1-1
+description: ERD 초안 및 JPA 엔티티 스켈레톤
+title: "[T1-1] ERD 초안 및 JPA 엔티티 스켈레톤"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        `Indicator`, `CategoryScore`, `BudgetAllocation`, `EventLog`, `GameSession` 기본 엔티티/리포지토리.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - ERD png/md, 엔티티 클래스, 리포지토리 인터페이스.
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 스키마 자동 생성
+        - label: 기본 CRUD 테스트 통과

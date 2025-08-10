@@ -1,0 +1,26 @@
+name: Task - T0-4
+description: GitHub Actions CI (단위테스트+도커빌드)
+title: "[T0-4] GitHub Actions CI (단위테스트+도커빌드)"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        PR 시 테스트/빌드, main 머지 시 이미지 빌드&푸시(Artifact Registry는 T6에서).
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - `.github/workflows/ci.yml`.
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 테스트 통과
+        - label: 이미지 로컬 레지스트리 푸시 시뮬레이션

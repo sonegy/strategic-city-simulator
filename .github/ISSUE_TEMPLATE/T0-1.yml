@@ -1,0 +1,25 @@
+name: Task - T0-1
+description: Gradle/SB3 템플릿 부트스트랩
+title: "[T0-1] Gradle/SB3 템플릿 부트스트랩"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        JDK 21, Spring Boot 3.x(LTS), Gradle Kotlin DSL 프로젝트 생성. 기본 패키지 `com.citysim.app`.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - `build.gradle.kts`, `settings.gradle.kts`, `Application.kt`/`Application.java`.
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 앱 로컬 부팅(8080) 및 `/actuator/health` 200 OK.
