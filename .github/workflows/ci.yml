@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-gradle-
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Run tests
+        run: ./gradlew test
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile
+          load: true
+          tags: strategic-city-simulator:ci
+
+      - name: Start local registry
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: docker run -d -p 5000:5000 --name registry registry:2
+
+      - name: Push image to local registry
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          docker tag strategic-city-simulator:ci localhost:5000/strategic-city-simulator:${{ github.sha }}
+          docker push localhost:5000/strategic-city-simulator:${{ github.sha }}
