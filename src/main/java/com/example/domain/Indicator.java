@@ -11,6 +11,7 @@ public class Indicator {
 
     private String name;
 
+    @Column(name = "metric_value")
     private Integer value;
 
     @ManyToOne(fetch = FetchType.LAZY)

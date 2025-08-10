@@ -22,10 +22,28 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'com.h2database:h2'
     testImplementation 'org.testcontainers:junit-jupiter'
     testImplementation 'org.testcontainers:postgresql'
 }
 
 test {
-    useJUnitPlatform()
+    useJUnitPlatform {
+        excludeTags 'integration'
+    }
 }
+
+tasks.register('integrationTest', Test) {
+    description = 'Runs tests tagged with @Tag("integration").'
+    group = 'verification'
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    shouldRunAfter tasks.test
+    useJUnitPlatform {
+        includeTags 'integration'
+    }
+    // 통합테스트는 기본적으로 'tc' 프로필로 실행
+    systemProperty 'spring.profiles.active', 'tc'
+}
+
+tasks.check { dependsOn tasks.test }

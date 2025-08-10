@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    # 실주소/계정은 테스트에서 Testcontainers로 동적 주입(DynamicPropertySource)
+    driverClassName: org.postgresql.Driver
+    username: test
+    password: test
