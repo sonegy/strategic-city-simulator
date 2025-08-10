@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  app:
+    image: ${IMAGE:-strategic-city-simulator}:${TAG:-local}
+    build:
+      context: ..
+      dockerfile: ../Dockerfile
+    environment:
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE:-local}
+      - JAVA_OPTS=${JAVA_OPTS:-}
+    ports:
+      - "${PORT:-8080}:8080"
+    restart: unless-stopped
+

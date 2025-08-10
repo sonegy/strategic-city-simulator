@@ -1,0 +1,15 @@
+# 빌드 산출물
+build
+.gradle
+
+# VCS/IDE
+.git
+.gitignore
+.DS_Store
+.idea
+.vscode
+
+# 기타 불필요 파일
+**/*.log
+**/*.iml
+
