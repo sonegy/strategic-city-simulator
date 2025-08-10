@@ -39,3 +39,6 @@
 ## Architecture Notes
 - Entry point: `StrategicCitySimulatorApplication`. Start new features under `com.example.<feature>` packages. Keep domain, service, and web layers separated as the project grows.
 
+
+## 마지막으로 중요해 모든 응답은 한국어를 쓰도록해! 명심해!
+
