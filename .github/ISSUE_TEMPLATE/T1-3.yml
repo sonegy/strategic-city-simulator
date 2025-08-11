@@ -12,13 +12,7 @@ body:
         
         **DOD**
         - [ ] 로컬/프로드 프로필 스위칭 테스트
-        
         ---
-        
-        ### [T2-1] 지표 업데이트 포뮬러 모듈
-        **내용**
-        - `IndicatorEngine` 인터페이스 + 기본 구현(투자효율/자연변화/상호작용 파라미터 주입).
-
   - type: textarea
     id: deliverables
     attributes:
