@@ -56,6 +56,7 @@ public class SimulateMonthUseCase {
 
         // 현재 카테고리 점수 로드 (없다면 50점으로 초기화)
         Map<CategoryType, Integer> currentScores = loadCurrentScores(session);
+        Map<CategoryType, Integer> before = new EnumMap<>(currentScores);
 
         // 파라미터 구성(간단한 기본값 + 샘플 매트릭스)
         IndicatorEngineParams params = defaultParams();
@@ -78,7 +79,7 @@ public class SimulateMonthUseCase {
         persistEvents(session, eventResult.occurrences());
         incrementSessionMonth(session);
 
-        return new Result(eventResult.nextScores(), eventResult.occurrences());
+        return new Result(before, eventResult.nextScores(), eventResult.occurrences());
     }
 
     private Map<CategoryType, Integer> loadCurrentScores(GameSession session) {
@@ -140,6 +141,7 @@ public class SimulateMonthUseCase {
     }
 
     public record Result(
+            Map<CategoryType, Integer> before,
             Map<CategoryType, Integer> scores,
             List<EventOccurrence> events
     ) {}
