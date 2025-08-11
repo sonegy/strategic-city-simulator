@@ -11,13 +11,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BasicIndicatorEngineTests {
 
     private static IndicatorEngineParams params(
-            double investBaseDelta,
+            double investmentBaseDelta,
             double interactionScale,
             Map<CategoryType, Double> natural,
             Map<CategoryType, Double> eff,
             Map<CategoryType, Map<CategoryType, Double>> mat
     ) {
-        return new IndicatorEngineParams(natural, eff, mat, investBaseDelta, interactionScale);
+        return new IndicatorEngineParams(natural, eff, mat, investmentBaseDelta, interactionScale);
     }
 
     private static Map<CategoryType, Double> zerosDouble() {
@@ -111,5 +111,68 @@ class BasicIndicatorEngineTests {
             assertThat(next.get(c)).isEqualTo(100);
         }
     }
-}
 
+    @Test
+    void ratios_independent_when_sum_not_one() {
+        IndicatorEngine engine = new BasicIndicatorEngine();
+
+        Map<CategoryType, Integer> current = all50();
+        EnumMap<CategoryType, Double> ratios = new EnumMap<>(CategoryType.class);
+        for (CategoryType c : CategoryType.values()) ratios.put(c, 0.0);
+        ratios.put(CategoryType.ECONOMY, 0.3); // 합계 0.3 (1.0 미만)
+
+        IndicatorEngineParams p = params(10.0, 0.0, zerosDouble(), onesDouble(), zeroMatrix());
+
+        Map<CategoryType, Integer> next = engine.updateCategoryScores(current, ratios, p);
+        // Economy: 50 + invest(10 * 0.3) = 53
+        assertThat(next.get(CategoryType.ECONOMY)).isEqualTo(53);
+        // Others unchanged
+        assertThat(next.get(CategoryType.DEFENSE)).isEqualTo(50);
+    }
+
+    @Test
+    void out_of_range_budget_ratio_throws_exception() {
+        IndicatorEngine engine = new BasicIndicatorEngine();
+        Map<CategoryType, Integer> current = all50();
+
+        // 음수 비율
+        EnumMap<CategoryType, Double> ratiosNeg = new EnumMap<>(CategoryType.class);
+        for (CategoryType c : CategoryType.values()) ratiosNeg.put(c, 0.0);
+        ratiosNeg.put(CategoryType.ECONOMY, -0.1);
+
+        IndicatorEngineParams p = params(10.0, 0.0, zerosDouble(), onesDouble(), zeroMatrix());
+
+        org.assertj.core.api.Assertions.assertThatThrownBy(() ->
+                engine.updateCategoryScores(current, ratiosNeg, p)
+        ).isInstanceOf(IllegalArgumentException.class);
+
+        // 1 초과 비율
+        EnumMap<CategoryType, Double> ratiosOver = new EnumMap<>(CategoryType.class);
+        for (CategoryType c : CategoryType.values()) ratiosOver.put(c, 0.0);
+        ratiosOver.put(CategoryType.ECONOMY, 1.1);
+
+        org.assertj.core.api.Assertions.assertThatThrownBy(() ->
+                engine.updateCategoryScores(current, ratiosOver, p)
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void natural_drift_floor_clamped_to_zero() {
+        IndicatorEngine engine = new BasicIndicatorEngine();
+        EnumMap<CategoryType, Integer> current = new EnumMap<>(CategoryType.class);
+        for (CategoryType c : CategoryType.values()) current.put(c, 2);
+
+        EnumMap<CategoryType, Double> natural = new EnumMap<>(CategoryType.class);
+        for (CategoryType c : CategoryType.values()) natural.put(c, -5.0);
+
+        IndicatorEngineParams p = params(0.0, 0.0, natural, onesDouble(), zeroMatrix());
+
+        EnumMap<CategoryType, Double> ratios = new EnumMap<>(CategoryType.class);
+        for (CategoryType c : CategoryType.values()) ratios.put(c, 0.0);
+
+        Map<CategoryType, Integer> next = engine.updateCategoryScores(current, ratios, p);
+        for (CategoryType c : CategoryType.values()) {
+            assertThat(next.get(c)).isEqualTo(0);
+        }
+    }
+}
