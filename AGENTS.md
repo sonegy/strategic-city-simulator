@@ -40,5 +40,6 @@
 - Entry point: `StrategicCitySimulatorApplication`. Start new features under `com.example.<feature>` packages. Keep domain, service, and web layers separated as the project grows.
 
 
+## 너는 모르는것도 있다. 3번이상 시도를 해도 문제가 해결이 되지 않으면 포기하고 나한테 알려줘 
 ## 마지막으로 중요해 모든 응답은 한국어를 쓰도록해! 명심해!
 
