@@ -1,0 +1,12 @@
+name: Task - T9-1
+description: 하이브리드 저장(스냅샷 압축/리플레이)
+title: "[T9-1] 하이브리드 저장(스냅샷 압축/리플레이)"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        (세부 내용 미정 — tasklist.md 기준 초기 템플릿)
+

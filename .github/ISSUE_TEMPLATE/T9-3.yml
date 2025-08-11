@@ -1,0 +1,12 @@
+name: Task - T9-3
+description: AI 정책 어드바이저(권고 예산 비율)
+title: "[T9-3] AI 정책 어드바이저(권고 예산 비율)"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        (세부 내용 미정 — tasklist.md 기준 초기 템플릿)
+

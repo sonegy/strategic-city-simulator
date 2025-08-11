@@ -1,0 +1,26 @@
+name: Task - T2-3
+description: 이벤트 처리기(확률/조건/효과)
+title: "[T2-3] 이벤트 처리기(확률/조건/효과)"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        `EventEngine`—확률 계산, 조건 평가, 효과 적용.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 5개 샘플 이벤트에 대한 시뮬레이션 테스트
+

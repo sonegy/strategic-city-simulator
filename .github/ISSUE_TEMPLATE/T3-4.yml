@@ -1,0 +1,27 @@
+name: Task - T3-4
+description: OpenAPI 문서화 & 스니펫 테스트
+title: "[T3-4] OpenAPI 문서화 & 스니펫 테스트"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        springdoc-openapi UI, REST Docs 또는 springdoc Tests.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: '/swagger-ui' 노출
+        - label: 기본 시나리오 스니펫 생성
+

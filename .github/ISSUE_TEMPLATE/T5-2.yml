@@ -1,0 +1,26 @@
+name: Task - T5-2
+description: 시뮬레이션 회귀 테스트 스냅샷
+title: "[T5-2] 시뮬레이션 회귀 테스트 스냅샷"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        고정 시드로 12개월 실행, 결과 스냅샷 비교.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 변경 시 결과 차이 탐지 알림
+

@@ -1,0 +1,27 @@
+name: Task - T6-4
+description: Cloud Run 배포 파이프라인
+title: "[T6-4] Cloud Run 배포 파이프라인"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        GA CD 워크플로우(main 머지 시 배포), 리비전 자동 롤백 전략.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: '/actuator/health' 정상
+        - label: 트래픽 스플릿 배포 확인
+

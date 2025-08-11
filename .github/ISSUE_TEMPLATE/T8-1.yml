@@ -1,0 +1,26 @@
+name: Task - T8-1
+description: 운영/개발 README
+title: "[T8-1] 운영/개발 README"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        로컬 실행, 테스트, 도커 빌드, GCP 배포 가이드.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 신입이 따라 해서 30분 내 로컬 실행 성공
+

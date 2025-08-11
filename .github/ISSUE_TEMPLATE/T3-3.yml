@@ -1,0 +1,26 @@
+name: Task - T3-3
+description: 리포트 조회 API
+title: "[T3-3] 리포트 조회 API"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        `GET /api/v1/sessions/{id}/reports?year=&month=`.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 월간 요약/누적 통계 반환
+

@@ -1,0 +1,26 @@
+name: Task - T7-3
+description: 감사/이벤트 로그
+title: "[T7-3] 감사/이벤트 로그"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        주요 액션 감사 로그, 이벤트 결과 `EventLog` 저장.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 월 턴 실행 시 로그/DB 기록 확인
+
