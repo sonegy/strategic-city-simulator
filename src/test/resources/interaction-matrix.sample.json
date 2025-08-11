@@ -1,0 +1,7 @@
+{
+  "POLITICS": { "ECONOMY": 2.0 },
+  "ECONOMY": { "ENVIRONMENT": -2.0 },
+  "DIPLOMACY": { "CULTURE": 2.0 },
+  "DEFENSE": { "POLITICS": 1.0 }
+}
+
