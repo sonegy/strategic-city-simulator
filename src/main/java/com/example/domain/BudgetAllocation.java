@@ -2,6 +2,15 @@ package com.example.domain;
 
 import jakarta.persistence.*;
 
+/**
+ * 월간 예산 배분 정보를 보관하는 엔티티.
+ *
+ * <p>
+ * - category: 예산을 배분한 카테고리
+ * - ratio: 배분 비율(0.0~1.0)
+ * - session: 소속 게임 세션
+ * </p>
+ */
 @Entity
 @Table(name = "budget_allocations")
 public class BudgetAllocation {

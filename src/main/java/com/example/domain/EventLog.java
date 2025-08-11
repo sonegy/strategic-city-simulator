@@ -3,6 +3,16 @@ package com.example.domain;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * 시뮬레이션 중 발생한 이벤트 기록을 저장하는 엔티티.
+ *
+ * <p>
+ * - type: 이벤트 유형(예: 자연재해/외교/경제 등)
+ * - description: 이벤트 설명
+ * - occurredAt: 발생 시각
+ * - session: 소속 게임 세션
+ * </p>
+ */
 @Entity
 @Table(name = "event_logs")
 public class EventLog {

@@ -2,6 +2,15 @@ package com.example.domain;
 
 import jakarta.persistence.*;
 
+/**
+ * 카테고리(국방/외교/경제/정치/문화/환경) 단위의 점수를 저장하는 엔티티.
+ *
+ * <p>
+ * - category: 점수의 대상 카테고리
+ * - score: 0~100 범위의 점수(권장)
+ * - session: 소속 게임 세션
+ * </p>
+ */
 @Entity
 @Table(name = "category_scores")
 public class CategoryScore {

@@ -3,6 +3,15 @@ package com.example.domain;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * 게임 진행을 나타내는 세션 엔티티.
+ *
+ * <p>
+ * - difficulty: 난이도(EASY/NORMAL/HARD)
+ * - currentMonth: 현재 진행 월(게임 시작 기준 누적 월)
+ * - createdAt: 세션 생성 시각
+ * </p>
+ */
 @Entity
 @Table(name = "game_sessions")
 public class GameSession {
