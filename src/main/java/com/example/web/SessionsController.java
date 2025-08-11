@@ -6,6 +6,7 @@ import com.example.web.dto.StartSessionRequest;
 import com.example.web.dto.StartSessionResponse;
 import com.example.web.dto.SimulateRequest;
 import com.example.web.dto.SimulateResponse;
+import com.example.web.dto.ReportResponse;
 import com.example.engine.usecase.SimulateMonthUseCase;
 import com.example.engine.OverallIndexCalculator;
 import com.example.domain.CategoryType;
@@ -16,6 +17,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/sessions")
@@ -24,11 +30,17 @@ public class SessionsController {
 
     private final StartSessionService startSessionService;
     private final SimulateMonthUseCase simulateMonthUseCase;
+    private final com.example.repository.CategoryScoreRepository scoreRepository;
+    private final com.example.repository.EventLogRepository eventLogRepository;
 
     public SessionsController(StartSessionService startSessionService,
-                              SimulateMonthUseCase simulateMonthUseCase) {
+                              SimulateMonthUseCase simulateMonthUseCase,
+                              com.example.repository.CategoryScoreRepository scoreRepository,
+                              com.example.repository.EventLogRepository eventLogRepository) {
         this.startSessionService = startSessionService;
         this.simulateMonthUseCase = simulateMonthUseCase;
+        this.scoreRepository = scoreRepository;
+        this.eventLogRepository = eventLogRepository;
     }
 
     @Operation(summary = "세션 시작", description = "난이도를 입력 받아 새 게임 세션을 생성하고 초기 카테고리 점수를 반환합니다.")
@@ -63,5 +75,38 @@ public class SessionsController {
         double overall = OverallIndexCalculator.compute(res.scores());
         var body = new SimulateResponse(res.before(), res.scores(), delta, events, overall);
         return ResponseEntity.ok(body);
+    }
+
+    @Operation(summary = "리포트 조회", description = "월간 요약과 누적 통계를 반환합니다. year, month가 없으면 최신 스냅샷 기준.")
+    @GetMapping("/{id}/reports")
+    public ResponseEntity<ReportResponse> report(@PathVariable("id") long sessionId,
+                                                 @RequestParam(value = "year", required = false) Integer year,
+                                                 @RequestParam(value = "month", required = false) Integer month) {
+        var scores = scoreRepository.findBySessionId(sessionId).stream()
+                .collect(Collectors.toMap(
+                        com.example.domain.CategoryScore::getCategory,
+                        com.example.domain.CategoryScore::getScore
+                ));
+        double overall = OverallIndexCalculator.compute(scores);
+
+        LocalDateTime start = null, end = null;
+        if (year != null && month != null) {
+            LocalDate first = LocalDate.of(year, month, 1);
+            start = first.atStartOfDay();
+            end = first.withDayOfMonth(first.lengthOfMonth()).atTime(LocalTime.MAX);
+        }
+
+        var events = (start != null)
+                ? eventLogRepository.findBySessionIdAndOccurredAtBetween(sessionId, start, end)
+                : eventLogRepository.findBySessionId(sessionId);
+
+        var eventDtos = events.stream()
+                .map(e -> new ReportResponse.ReportEventDto(e.getType(), e.getDescription(), e.getOccurredAt()))
+                .toList();
+
+        var cumulativeByType = eventLogRepository.findBySessionId(sessionId).stream()
+                .collect(Collectors.groupingBy(com.example.domain.EventLog::getType, Collectors.counting()));
+
+        return ResponseEntity.ok(new ReportResponse(year, month, scores, overall, eventDtos, cumulativeByType));
     }
 }
