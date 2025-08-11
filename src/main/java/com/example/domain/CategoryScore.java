@@ -51,4 +51,8 @@ public class CategoryScore {
     public GameSession getSession() {
         return session;
     }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
 }

@@ -50,4 +50,13 @@ public class GameSession {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+
+    public void setCurrentMonth(Integer currentMonth) {
+        this.currentMonth = currentMonth;
+    }
+
+    public void incrementMonth() {
+        int cur = this.currentMonth == null ? 0 : this.currentMonth;
+        this.currentMonth = cur + 1;
+    }
 }

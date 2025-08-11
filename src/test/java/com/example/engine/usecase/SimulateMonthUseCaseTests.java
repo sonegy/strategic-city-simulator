@@ -47,7 +47,10 @@ class SimulateMonthUseCaseTests {
         long count = scoreRepository.findAll().stream()
                 .filter(s -> s.getSession().getId().equals(session.getId()))
                 .count();
-        assertThat(count).isEqualTo(12); // 초기 6 + 새로운 6
+        assertThat(count).isEqualTo(6); // 업데이트 방식으로 유지
+
+        // 세션 월수 +1 증가 확인
+        assertThat(sessionRepository.findById(session.getId()).orElseThrow().getCurrentMonth())
+                .isEqualTo(1);
     }
 }
-

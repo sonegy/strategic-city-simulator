@@ -82,22 +82,22 @@ public class SimulateMonthUseCase {
     }
 
     private Map<CategoryType, Integer> loadCurrentScores(GameSession session) {
-        List<CategoryScore> list = scoreRepository.findAll(); // 간단 구현: 전체 로드 후 세션 필터
+        List<CategoryScore> list = scoreRepository.findBySessionId(session.getId());
         Map<CategoryType, Integer> map = new EnumMap<>(CategoryType.class);
         for (CategoryType c : CategoryType.values()) map.put(c, 50);
         for (CategoryScore cs : list) {
-            if (Objects.equals(cs.getSession().getId(), session.getId())) {
-                map.put(cs.getCategory(), cs.getScore());
-            }
+            map.put(cs.getCategory(), cs.getScore());
         }
         return map;
     }
 
     private void persistScores(GameSession session, Map<CategoryType, Integer> scores) {
-        // 간단 구현: 세션에 해당하는 기존 점수는 무시하고 새 엔티티로 저장
-        // (엔티티에 세터가 없어 업데이트가 어려움. 도메인 정리 시 업데이트로 변경 권장)
         for (Map.Entry<CategoryType, Integer> e : scores.entrySet()) {
-            scoreRepository.save(new CategoryScore(e.getKey(), e.getValue(), session));
+            scoreRepository.findBySessionIdAndCategory(session.getId(), e.getKey())
+                    .ifPresentOrElse(existing -> {
+                        existing.setScore(e.getValue());
+                        scoreRepository.save(existing);
+                    }, () -> scoreRepository.save(new CategoryScore(e.getKey(), e.getValue(), session)));
         }
     }
 
@@ -109,8 +109,8 @@ public class SimulateMonthUseCase {
     }
 
     private void incrementSessionMonth(GameSession session) {
-        // GameSession 엔티티에 세터가 없으므로 현재는 증가값을 반영하지 않음.
-        // 추후 도메인 보강 시 setCurrentMonth 추가 권장.
+        session.incrementMonth();
+        sessionRepository.save(session);
     }
 
     private IndicatorEngineParams defaultParams() {
