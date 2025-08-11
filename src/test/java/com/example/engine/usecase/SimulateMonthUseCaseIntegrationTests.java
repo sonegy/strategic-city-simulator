@@ -5,6 +5,7 @@ import com.example.repository.CategoryScoreRepository;
 import com.example.repository.GameSessionRepository;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -39,6 +40,7 @@ class SimulateMonthUseCaseIntegrationTests {
     private final GameSessionRepository sessionRepository;
     private final CategoryScoreRepository scoreRepository;
 
+    @Autowired
     SimulateMonthUseCaseIntegrationTests(SimulateMonthUseCase useCase,
                                          GameSessionRepository sessionRepository,
                                          CategoryScoreRepository scoreRepository) {
@@ -64,4 +66,3 @@ class SimulateMonthUseCaseIntegrationTests {
         assertThat(result.scores().keySet()).containsExactlyInAnyOrder(CategoryType.values());
     }
 }
-
