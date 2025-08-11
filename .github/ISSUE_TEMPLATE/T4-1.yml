@@ -7,8 +7,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## 📋 Task 개요
-        Vite + React 최소 템플릿, 예산 슬라이더, 결과 테이블.
+        - ## 📋 Task 개요
+        - Vite + React 최소 템플릿, 예산 슬라이더, 결과 테이블.
 
   - type: textarea
     id: deliverables
