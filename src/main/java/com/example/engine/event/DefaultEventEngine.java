@@ -8,9 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 이벤트 확률/조건을 평가하고 효과를 적용하는 기본 엔진.
- * - 여러 이벤트가 동시에 발생할 수 있으며, 효과는 누적된다.
- * - 결과 점수는 0~100으로 클램프된다.
+ * 이벤트 확률/조건을 평가하고 효과를 적용하는 기본 엔진 구현.
+ * <p>
+ * - 여러 이벤트가 동시 발생할 수 있으며, 카테고리별 델타는 순차적으로 누적됩니다.
+ * - 최종 점수는 0~100 범위로 클램프됩니다.
  */
 public class DefaultEventEngine implements EventEngine {
 
@@ -30,7 +31,7 @@ public class DefaultEventEngine implements EventEngine {
             if (!spec.condition().evaluate(next)) continue;
             double threshold = spec.probability() * frequencyScale;
             if (random.nextDouble() < threshold) {
-                // 적용
+                // 효과 적용 및 적용 내역 기록
                 EnumMap<CategoryType, Integer> applied = new EnumMap<>(CategoryType.class);
                 for (Map.Entry<CategoryType, Integer> e : spec.impact().entrySet()) {
                     CategoryType cat = e.getKey();
@@ -50,4 +51,3 @@ public class DefaultEventEngine implements EventEngine {
         return Math.max(min, Math.min(max, v));
     }
 }
-

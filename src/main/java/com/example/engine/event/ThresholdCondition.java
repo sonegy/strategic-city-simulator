@@ -4,6 +4,9 @@ import com.example.domain.CategoryType;
 
 import java.util.Map;
 
+/**
+ * 특정 카테고리 점수에 대해 임계 비교(>, ≥, <, ≤, ==, !=)를 수행하는 기본 조건 구현.
+ */
 class ThresholdCondition implements Condition {
     private final CategoryType category;
     private final ComparisonOperator op;
@@ -28,4 +31,3 @@ class ThresholdCondition implements Condition {
         };
     }
 }
-

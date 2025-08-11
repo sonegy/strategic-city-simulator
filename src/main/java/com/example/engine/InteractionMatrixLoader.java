@@ -10,12 +10,15 @@ import java.util.EnumMap;
 import java.util.Map;
 
 /**
- * 상호작용 매트릭스를 JSON(또는 호환 포맷)으로부터 로딩하는 유틸리티.
- * 기대 포맷 예시:
- * {
+ * 카테고리 간 상호작용 매트릭스(from→to 가중치)를 클래스패스 리소스에서 로드하는 유틸리티.
+ * <p>
+ * - 포맷: JSON 오브젝트의 중첩 맵 구조로, 바깥 키는 from(CategoryType), 안쪽 키는 to(CategoryType), 값은 가중치(double).
+ * - 예시:
+ * <pre>{
  *   "POLITICS": { "ECONOMY": 2.0 },
  *   "ECONOMY": { "ENVIRONMENT": -2.0 }
- * }
+ * }</pre>
+ * - 로드된 결과는 불변 맵으로 변환되어 반환됩니다.
  */
 public class InteractionMatrixLoader {
 
@@ -26,8 +29,11 @@ public class InteractionMatrixLoader {
     }
 
     /**
-     * 클래스패스 리소스 경로에서 매트릭스를 로드한다.
+     * 클래스패스 리소스 경로에서 매트릭스를 로드합니다.
      * @param classpathResource 예: "/interaction-matrix.sample.json"
+     * @return CategoryType 열거형 키를 사용하는 불변 매트릭스 맵
+     * @throws IllegalArgumentException 리소스를 찾을 수 없을 때
+     * @throws IllegalStateException 파싱 실패 등 I/O 오류 발생 시
      */
     public Map<CategoryType, Map<CategoryType, Double>> loadFromClasspath(String classpathResource) {
         try (InputStream is = getResourceAsStream(classpathResource)) {
@@ -54,6 +60,9 @@ public class InteractionMatrixLoader {
         return is;
     }
 
+    /**
+     * 문자열 키 기반의 맵을 CategoryType 열거형 키 기반의 불변 매트릭스로 변환합니다.
+     */
     private static Map<CategoryType, Map<CategoryType, Double>> toEnumMatrix(
             Map<String, Map<String, Double>> raw
     ) {
@@ -70,4 +79,3 @@ public class InteractionMatrixLoader {
         return Map.copyOf(outer);
     }
 }
-

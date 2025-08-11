@@ -9,6 +9,9 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * 상호작용 매트릭스 로더와 기본 지표 엔진의 연동을 검증합니다.
+ */
 class InteractionMatrixLoaderTests {
 
     @Test
@@ -52,4 +55,3 @@ class InteractionMatrixLoaderTests {
         assertThat(next.get(CategoryType.ENVIRONMENT)).isEqualTo(49);  // 50 + 0 + (-1.0) -> 49
     }
 }
-

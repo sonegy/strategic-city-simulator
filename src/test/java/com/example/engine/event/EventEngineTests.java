@@ -11,6 +11,10 @@ import static com.example.engine.event.ComparisonOperator.*;
 import static com.example.engine.event.Condition.threshold;
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * 이벤트 엔진 동작 검증 테스트.
+ * - PRD 예시 5개 이벤트를 사용해 누적 효과와 발생 목록을 검증합니다.
+ */
 class EventEngineTests {
 
     private static Map<CategoryType, Integer> scores(int def, int dip, int eco, int pol, int cul, int env) {
@@ -111,4 +115,3 @@ class EventEngineTests {
         assertThat(res.occurrences()).hasSize(1);
     }
 }
-
