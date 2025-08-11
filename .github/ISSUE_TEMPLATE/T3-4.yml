@@ -22,6 +22,6 @@ body:
     attributes:
       label: ✅ Definition of Done
       options:
-        - label: '/swagger-ui' 노출
+        - label: "'/swagger-ui' 노출"
         - label: 기본 시나리오 스니펫 생성
 
