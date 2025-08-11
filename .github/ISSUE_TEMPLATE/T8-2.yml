@@ -1,0 +1,26 @@
+name: Task - T8-2
+description: API 사용 가이드
+title: "[T8-2] API 사용 가이드"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        cURL/HTTPie 샘플, 응답 예시, 에러 코드 표.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 최소 5개 시나리오 샘플 포함
+

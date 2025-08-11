@@ -1,0 +1,27 @@
+name: Task - T4-1
+description: 미니 대시보드(정적/SPA 한 페이지)
+title: "[T4-1] 미니 대시보드(정적/SPA 한 페이지)"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        Vite + React 최소 템플릿, 예산 슬라이더, 결과 테이블.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 로컬에서 백엔드 연동
+        - label: 한 턴 시뮬레이트 가능
+

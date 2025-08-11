@@ -1,0 +1,26 @@
+name: Task - T5-3
+description: 부하 테스트(가벼운)
+title: "[T5-3] 부하 테스트(가벼운)"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        k6 or JMeter로 간단 RPS, 95p 지연 < 200ms(시뮬레이트).
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 리포트 아카이브
+

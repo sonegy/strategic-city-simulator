@@ -1,0 +1,26 @@
+name: Task - T7-2
+description: 프로파일별 외부화 구성
+title: "[T7-2] 프로파일별 외부화 구성"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        prod는 Secret Manager, dev/local은 `.env`/yaml.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 세 가지 프로필 모두 기동 OK
+

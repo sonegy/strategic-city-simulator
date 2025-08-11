@@ -1,0 +1,12 @@
+name: Task - T9-5
+description: 멀티 세션 동시 실행 최적화
+title: "[T9-5] 멀티 세션 동시 실행 최적화"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        (세부 내용 미정 — tasklist.md 기준 초기 템플릿)
+

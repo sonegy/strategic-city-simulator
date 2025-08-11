@@ -1,0 +1,26 @@
+name: Task - T3-2
+description: 예산 배분/시뮬레이트 API
+title: "[T3-2] 예산 배분/시뮬레이트 API"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        `POST /api/v1/sessions/{id}/simulate` (월 예산 배분 입력).
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 결과에 지표 변화/이벤트/카테고리/종합지수 포함
+

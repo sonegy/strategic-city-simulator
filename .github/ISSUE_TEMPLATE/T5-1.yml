@@ -1,0 +1,27 @@
+name: Task - T5-1
+description: 단위/통합 테스트 기본 세트
+title: "[T5-1] 단위/통합 테스트 기본 세트"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        JUnit5/AssertJ/MockMvc, Testcontainers(Postgres).
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 라인 커버리지 60%+
+        - label: 핵심 유스케이스 통합 테스트
+

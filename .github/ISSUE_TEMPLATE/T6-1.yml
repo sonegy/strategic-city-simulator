@@ -1,0 +1,26 @@
+name: Task - T6-1
+description: GCP 프로젝트/레지스트리/권한
+title: "[T6-1] GCP 프로젝트/레지스트리/권한"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        Artifact Registry 생성, 서비스 계정/워크로드 아이덴티티.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: '`gcloud`로 로그인 없이 GA에서 푸시 성공'
+

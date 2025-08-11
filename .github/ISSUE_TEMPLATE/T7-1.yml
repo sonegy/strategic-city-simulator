@@ -1,0 +1,26 @@
+name: Task - T7-1
+description: 구성 유효성 검증
+title: "[T7-1] 구성 유효성 검증"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        `@ConfigurationProperties` + validation.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 잘못된 설정으로 기동 실패 시 명확한 에러
+

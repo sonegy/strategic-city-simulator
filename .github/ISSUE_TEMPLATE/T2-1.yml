@@ -1,0 +1,26 @@
+name: Task - T2-1
+description: 지표 업데이트 포뮬러 모듈
+title: "[T2-1] 지표 업데이트 포뮬러 모듈"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        `IndicatorEngine` 인터페이스 + 기본 구현(투자효율/자연변화/상호작용 파라미터 주입).
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - 서비스/유닛 테스트.
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 단위 테스트로 공식 검증(예상값 ±오차)
+

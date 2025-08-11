@@ -1,0 +1,12 @@
+name: Task - T9-4
+description: 이벤트 모더레이션 파일 외부화(Admin UI)
+title: "[T9-4] 이벤트 모더레이션 파일 외부화(Admin UI)"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        (세부 내용 미정 — tasklist.md 기준 초기 템플릿)
+

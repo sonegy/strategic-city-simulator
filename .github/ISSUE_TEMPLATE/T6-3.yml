@@ -1,0 +1,26 @@
+name: Task - T6-3
+description: Secret Manager 통합
+title: "[T6-3] Secret Manager 통합"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        DB 비번, JWT 시크릿 등 저장; SB에서 Secret Manager 연동.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 프로퍼티 주입 성공 및 로깅 마스킹
+

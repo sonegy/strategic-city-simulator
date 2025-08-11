@@ -1,0 +1,27 @@
+name: Task - T6-5
+description: 로깅/모니터링
+title: "[T6-5] 로깅/모니터링"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        Cloud Logging/Cloud Monitoring 연동, 구조화 로그(JSON).
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 대시보드 1개
+        - label: 경보(에러율/레이터시) 2개
+

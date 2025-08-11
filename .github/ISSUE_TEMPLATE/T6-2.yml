@@ -1,0 +1,26 @@
+name: Task - T6-2
+description: Cloud SQL(Postgres) 준비
+title: "[T6-2] Cloud SQL(Postgres) 준비"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        인스턴스/DB/사용자 생성, VPC/프록시 방식 결정(Cloud Run 연결).
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 로컬→Cloud SQL Proxy로 연결 테스트
+

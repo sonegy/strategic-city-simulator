@@ -1,0 +1,26 @@
+name: Task - T4-2
+description: 월간 보고서 표/간단 차트
+title: "[T4-2] 월간 보고서 표/간단 차트"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        변화 화살표/미니 차트(Chart.js).
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 3개 지표 이상 그래프 표시
+
