@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://dev-db:5432/strategic_city_simulator
+    username: dev
+    password: devpass
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  security:
+    user:
+      name: dev
+      password: devpass
+logging:
+  level:
+    root: INFO
+server:
+  port: 8080
