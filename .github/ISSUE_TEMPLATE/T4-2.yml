@@ -25,3 +25,12 @@ body:
         - label: 시작 기능 구현
         - label: 취소 기능 구현
 
+  - type: markdown
+    attributes:
+      value: |
+        ## 🔌 연관 API
+        - `POST /api/v1/sessions` (세션 시작)
+
+        ## 🔗 참고
+        - 와이어프레임: `docs/wireframes/figma/New_Game_Dialog.svg`
+        - PRD: `PRD_expanded.md`

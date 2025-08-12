@@ -25,3 +25,13 @@ body:
         - label: 지표 표시
         - label: 월간 예산 배분 조절 기능 완료
 
+  - type: markdown
+    attributes:
+      value: |
+        ## 🔌 연관 API
+        - `POST /api/v1/sessions/{id}/simulate` (월 예산 배분 시뮬레이트)
+        - `GET /api/v1/sessions/{id}/reports?year=&month=` (월간 리포트 조회)
+
+        ## 🔗 참고
+        - 와이어프레임: `docs/wireframes/figma/Main_Dashboard.svg`, `docs/wireframes/figma/Event_Log_Drawer.svg`
+        - PRD: `PRD_expanded.md`
