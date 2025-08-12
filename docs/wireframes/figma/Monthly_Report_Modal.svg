@@ -1,0 +1,42 @@
+<svg width="1440" height="1024" viewBox="0 0 1440 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1440" height="1024" fill="#F7F7F7"/>
+  <!-- Modal backdrop -->
+  <rect width="1440" height="1024" fill="#000" fill-opacity="0.2"/>
+  <!-- Modal -->
+  <rect x="240" y="128" width="960" height="768" rx="12" fill="#FFFFFF" stroke="#DDDDDD"/>
+  <text x="272" y="170" font-family="Inter, Arial" font-size="20" fill="#111">월간 보고서 - 2025년 3월</text>
+
+  <!-- Summary Row -->
+  <rect x="272" y="192" width="896" height="64" rx="8" fill="#FAFAFA" stroke="#E6E6E6"/>
+  <text x="288" y="230" font-family="Inter, Arial" font-size="14" fill="#111">종합 지수: 68 → 71 ▲ +3</text>
+
+  <!-- Category Changes -->
+  <text x="272" y="276" font-family="Inter, Arial" font-size="16" fill="#111">카테고리 변화</text>
+  <rect x="272" y="288" width="896" height="160" rx="8" fill="#FFFFFF" stroke="#E6E6E6"/>
+  <text x="288" y="320" font-family="Inter, Arial" font-size="13" fill="#111">경제: 72 → 75 ▲ +3</text>
+  <text x="520" y="320" font-family="Inter, Arial" font-size="13" fill="#111">정치: 58 → 56 ▼ -2</text>
+  <text x="288" y="348" font-family="Inter, Arial" font-size="13" fill="#111">국방: 51 → 52 ▲ +1</text>
+  <text x="520" y="348" font-family="Inter, Arial" font-size="13" fill="#111">외교: 64 → 66 ▲ +2</text>
+  <text x="288" y="376" font-family="Inter, Arial" font-size="13" fill="#111">문화: 55 → 57 ▲ +2</text>
+  <text x="520" y="376" font-family="Inter, Arial" font-size="13" fill="#111">환경: 62 → 60 ▼ -2</text>
+
+  <!-- Events -->
+  <text x="272" y="472" font-family="Inter, Arial" font-size="16" fill="#111">이벤트</text>
+  <rect x="272" y="484" width="896" height="128" rx="8" fill="#FFFFFF" stroke="#E6E6E6"/>
+  <text x="288" y="516" font-family="Inter, Arial" font-size="13" fill="#111">[✓] 무역 협정 체결: 경제 +5, 국제 신뢰도 +3</text>
+  <text x="288" y="544" font-family="Inter, Arial" font-size="13" fill="#666">[ ] 태풍 피해 (조건 미충족)</text>
+
+  <!-- Highlights and Finance -->
+  <text x="272" y="652" font-family="Inter, Arial" font-size="16" fill="#111">하이라이트 · 재정</text>
+  <rect x="272" y="664" width="560" height="96" rx="8" fill="#FFFFFF" stroke="#E6E6E6"/>
+  <text x="288" y="696" font-family="Inter, Arial" font-size="13" fill="#111">GDP +1.8% · 실업률 -0.3% · 안정도 -2 · 대기질 -2</text>
+  <rect x="848" y="664" width="320" height="96" rx="8" fill="#FFFFFF" stroke="#E6E6E6"/>
+  <text x="864" y="696" font-family="Inter, Arial" font-size="13" fill="#111">세수 +2% · 지출 9.0억 · 잔여 1.0억 · 부채 0</text>
+
+  <!-- Actions -->
+  <rect x="1040" y="848" width="112" height="40" rx="8" fill="#EDEDED" stroke="#CCCCCC"/>
+  <text x="1072" y="873" font-family="Inter, Arial" font-size="14" fill="#111">세부 보고서</text>
+  <rect x="1156" y="848" width="112" height="40" rx="8" fill="#2F80ED"/>
+  <text x="1188" y="873" font-family="Inter, Arial" font-size="14" fill="#FFF">다음으로</text>
+</svg>
+

@@ -1,0 +1,19 @@
+<svg width="1440" height="1024" viewBox="0 0 1440 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1440" height="1024" fill="#FFFFFF"/>
+  <!-- Drawer background -->
+  <rect x="960" y="0" width="480" height="1024" fill="#FFFFFF" stroke="#DDDDDD"/>
+  <text x="992" y="48" font-family="Inter, Arial" font-size="18" fill="#111">이벤트 로그 (최근 6개월)</text>
+
+  <!-- Items -->
+  <rect x="976" y="72" width="448" height="64" rx="8" fill="#FAFAFA" stroke="#E6E6E6"/>
+  <text x="992" y="108" font-family="Inter, Arial" font-size="13" fill="#111">3월: 무역 협정 체결 · +경제5 +외교3</text>
+  <rect x="976" y="144" width="448" height="64" rx="8" fill="#FFFFFF" stroke="#E6E6E6"/>
+  <text x="992" y="180" font-family="Inter, Arial" font-size="13" fill="#111">2월: 태풍 피해 회피 · (환경 ≥ 60)</text>
+  <rect x="976" y="216" width="448" height="64" rx="8" fill="#FFFFFF" stroke="#E6E6E6"/>
+  <text x="992" y="252" font-family="Inter, Arial" font-size="13" fill="#111">1월: 산업 투자 확대 · +경제3 -환경1</text>
+
+  <!-- Close button -->
+  <rect x="1376" y="24" width="40" height="40" rx="8" fill="#EDEDED" stroke="#CCCCCC"/>
+  <text x="1390" y="50" font-family="Inter, Arial" font-size="14" fill="#111">×</text>
+</svg>
+
