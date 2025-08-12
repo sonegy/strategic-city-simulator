@@ -1,0 +1,27 @@
+name: Task - T4-3
+description: Main Dashboard 구성
+title: "[T4-3] Main Dashboard 구성"
+labels: ["task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        New Game으로 시작한 세션에서 월간 예산 배분 기능 제공. 한 항목 조정 시 합계 100% 유지되도록 나머지 항목을 균등 비율로 재분배. 예산에 따른 예상 변화 출력(변경 시마다 즉시 업데이트). 이전 대비 달라진 지표 표시 및 전월 이벤트 로그 출력.
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - (해당 없음)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 지표 표시
+        - label: 월간 예산 배분 조절 기능 완료
+

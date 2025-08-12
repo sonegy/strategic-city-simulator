@@ -1,21 +1,22 @@
 name: Task - T4-1
-description: 미니 대시보드(정적/SPA 한 페이지)
-title: "[T4-1] 미니 대시보드(정적/SPA 한 페이지)"
+description: 프론트엔드 구성
+title: "[T4-1] 프론트엔드 구성"
 labels: ["task"]
 assignees: []
 body:
   - type: markdown
     attributes:
       value: |
-        - ## 📋 Task 개요
-        - Vite + React 최소 템플릿, 예산 슬라이더, 결과 테이블.
+        ## 📋 Task 개요
+        Vite, React 기반으로 구성 (SPA). 백엔드 연동 준비 및 환경 분리(local/dev).
 
   - type: textarea
     id: deliverables
     attributes:
       label: 📦 산출물
       value: |
-        - (해당 없음)
+        - Vite + React 프로젝트 스캐폴드
+        - 환경 파일(`.env.local` 등) 및 백엔드 URL 설정
 
   - type: checkboxes
     id: dod
@@ -23,5 +24,4 @@ body:
       label: ✅ Definition of Done
       options:
         - label: 로컬에서 백엔드 연동
-        - label: 한 턴 시뮬레이트 가능
 

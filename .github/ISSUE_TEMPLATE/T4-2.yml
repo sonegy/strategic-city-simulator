@@ -1,6 +1,6 @@
 name: Task - T4-2
-description: 월간 보고서 표/간단 차트
-title: "[T4-2] 월간 보고서 표/간단 차트"
+description: New Game Dialog 구성
+title: "[T4-2] New Game Dialog 구성"
 labels: ["task"]
 assignees: []
 body:
@@ -8,7 +8,7 @@ body:
     attributes:
       value: |
         ## 📋 Task 개요
-        변화 화살표/미니 차트(Chart.js).
+        난이도와 초기 상태를 선택하여 GameSession을 시작할 수 있는 다이얼로그 구성.
 
   - type: textarea
     id: deliverables
@@ -22,5 +22,6 @@ body:
     attributes:
       label: ✅ Definition of Done
       options:
-        - label: 3개 지표 이상 그래프 표시
+        - label: 시작 기능 구현
+        - label: 취소 기능 구현
 
