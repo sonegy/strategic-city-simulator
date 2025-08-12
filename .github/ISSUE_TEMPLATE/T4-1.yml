@@ -25,3 +25,9 @@ body:
       options:
         - label: 로컬에서 백엔드 연동
 
+  - type: markdown
+    attributes:
+      value: |
+        ## 🔗 참고
+        - PRD: `PRD_expanded.md`
+        - 와이어프레임: `docs/wireframes/figma/Main_Dashboard.svg`, `docs/wireframes/figma/Mobile_Layout.svg`
