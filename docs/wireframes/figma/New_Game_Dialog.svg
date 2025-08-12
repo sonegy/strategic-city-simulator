@@ -1,0 +1,20 @@
+<svg width="1440" height="1024" viewBox="0 0 1440 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1440" height="1024" fill="#F7F7F7"/>
+  <rect width="1440" height="1024" fill="#000" fill-opacity="0.2"/>
+  <!-- Dialog -->
+  <rect x="456" y="240" width="528" height="448" rx="12" fill="#FFFFFF" stroke="#DDDDDD"/>
+  <text x="488" y="280" font-family="Inter, Arial" font-size="20" fill="#111">새 게임</text>
+  <text x="488" y="320" font-family="Inter, Arial" font-size="14" fill="#111">난이도</text>
+  <rect x="488" y="332" width="464" height="40" rx="8" fill="#FAFAFA" stroke="#E6E6E6"/>
+  <text x="504" y="358" font-family="Inter, Arial" font-size="13" fill="#666">( ) Easy   (•) Normal   ( ) Hard</text>
+  <text x="488" y="396" font-family="Inter, Arial" font-size="14" fill="#111">초기 상태</text>
+  <rect x="488" y="408" width="464" height="40" rx="8" fill="#FAFAFA" stroke="#E6E6E6"/>
+  <text x="504" y="434" font-family="Inter, Arial" font-size="13" fill="#666">자동 ▼</text>
+  <rect x="488" y="472" width="464" height="72" rx="8" fill="#FFFFFF" stroke="#E6E6E6"/>
+  <text x="504" y="516" font-family="Inter, Arial" font-size="12" fill="#666">설명: 세수/효율/이벤트 빈도가 난이도에 따라 달라집니다.</text>
+  <rect x="760" y="608" width="88" height="40" rx="8" fill="#EDEDED" stroke="#CCCCCC"/>
+  <text x="786" y="633" font-family="Inter, Arial" font-size="14" fill="#111">취소</text>
+  <rect x="864" y="608" width="88" height="40" rx="8" fill="#2F80ED"/>
+  <text x="882" y="633" font-family="Inter, Arial" font-size="14" fill="#FFF">시작</text>
+</svg>
+
