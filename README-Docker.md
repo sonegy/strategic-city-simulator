@@ -40,6 +40,31 @@ cp docker/.env.example docker/.env
 ./docker/clean.sh
 ```
 
+## 로컬 개발: Postgres만 compose로 실행
+백엔드는 로컬 JVM에서 실행(`./gradlew bootRun`), 데이터베이스는 Docker(Postgres)로 실행하는 구성입니다. `application-local.yaml`은 기본적으로 `localhost:5432`의 Postgres를 사용하도록 되어 있습니다.
+
+1) 환경 파일 준비(선택)
+```bash
+cp docker/.env.example docker/.env
+# 필요 시 POSTGRES_* 값 수정 (기본값은 application-local.yaml과 일치)
+```
+
+2) Postgres 실행
+```bash
+./docker/run-db.sh
+# 준비되면 로컬에서 백엔드 실행: ./gradlew bootRun --args='--spring.profiles.active=local'
+```
+
+3) 종료
+```bash
+./docker/stop-db.sh
+```
+
+구성 파일: `docker/docker-compose.db.yml`
+ - 포트: `5432` 노출 (변경 시 `docker/.env`의 `POSTGRES_PORT` 수정)
+ - DB/계정: `strategic_city_simulator` / `postgres` / `password`
+ - 데이터 영속화: 볼륨 `pg_data`
+
 ## 동작 방식
 - 빌드 스테이지: `gradle:8.7-jdk21` 이미지에서 `gradle clean build -x test` 실행 후 `build/libs/*.jar` 생성
 - 런타임 스테이지: `eclipse-temurin:21-jre` 이미지에서 JAR 실행(`java $JAVA_OPTS -jar /app/app.jar`)
