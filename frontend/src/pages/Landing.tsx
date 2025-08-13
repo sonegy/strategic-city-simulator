@@ -14,8 +14,7 @@ export default function Landing() {
   };
 
   return (
-    <div className="container">
-      <h1>Strategic City Simulator</h1>
+    <>
       <p className="muted">세션을 선택하여 시작하세요.</p>
 
       <section style={{ marginBottom: 16 }}>
@@ -46,7 +45,6 @@ export default function Landing() {
         onClose={() => setOpen(false)}
         onStarted={(res) => navigate(`/sessions/${res.sessionId}`)}
       />
-    </div>
+    </>
   );
 }
-

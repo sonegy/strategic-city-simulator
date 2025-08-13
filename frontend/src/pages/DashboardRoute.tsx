@@ -35,9 +35,9 @@ export default function DashboardRoute() {
     };
   }, [sessionId]);
 
-  if (loading) return <div className="container"><p>로딩 중…</p></div>;
+  if (loading) return <p>로딩 중…</p>;
   if (error) return (
-    <div className="container">
+    <div>
       <p className="error" style={{ marginBottom: 12 }}>{error}</p>
       <Link className="btn" to="/">새 게임 시작으로 돌아가기</Link>
     </div>
@@ -45,9 +45,6 @@ export default function DashboardRoute() {
   if (!scores) return null;
 
   return (
-    <div className="container">
-      <Dashboard sessionId={sessionId} initialScores={scores} />
-    </div>
+    <Dashboard sessionId={sessionId} initialScores={scores} />
   );
 }
-

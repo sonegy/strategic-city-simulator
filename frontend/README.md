@@ -28,7 +28,7 @@ npm run build
 npm run preview
 ```
 
-## 구조
+## 구조(재구성, PRD 기준)
 ```
 frontend/
 ├─ index.html
@@ -40,17 +40,23 @@ frontend/
 ├─ .env.production
 └─ src/
    ├─ main.tsx
-   ├─ App.tsx
-   ├─ styles.css
+   ├─ App.tsx                # 라우팅/전역 프레임
+   ├─ styles.css             # 토큰/레이아웃/컴포넌트 스타일
    ├─ api/
-   │  ├─ client.ts
-   │  ├─ sessions.ts
-   │  ├─ simulations.ts
-   │  └─ types.ts
-   └─ components/
-      ├─ NewGameDialog.tsx
-      ├─ Dashboard.tsx
-      └─ BudgetPanel.tsx
+   │  ├─ client.ts          # base URL/헬스체크
+   │  ├─ sessions.ts        # 세션 생성
+   │  ├─ simulations.ts     # 월간 시뮬레이트
+   │  ├─ reports.ts         # 최신 리포트 로딩
+   │  └─ types.ts           # 공통 타입/라벨/표시 순서
+   ├─ components/
+   │  ├─ NewGameDialog.tsx  # 난이도 선택 모달
+   │  ├─ Dashboard.tsx      # 메인 대시보드 컨테이너
+   │  ├─ BudgetPanel.tsx    # 예산 6슬라이더(합계 100% 유지)
+   │  ├─ ReportModal.tsx    # 월간 보고서 모달(추가 예정)
+   │  └─ EventLogDrawer.tsx # 이벤트 로그 드로어(추가 예정)
+   └─ pages/
+      ├─ Landing.tsx        # 랜딩(새/기존 선택)
+      └─ DashboardRoute.tsx # /sessions/:id 로딩/복원 라우트
 ```
 
 ## 백엔드 연동 메모
@@ -60,7 +66,7 @@ frontend/
 ## 이슈
 - 관련 이슈: [#41](https://github.com/sonegy/strategic-city-simulator/issues/41)
 
-## UX 제안: 초기 로딩 → 새 게임/기존 선택 → 대시보드
+## UX: 초기 로딩 → 새 게임/기존 선택 → 대시보드
 와이어프레임(`docs/wireframes/README.md`) 기준으로, 초기 진입 시 다음 흐름을 권장합니다.
 
 - 첫 화면(Landing)
@@ -89,4 +95,4 @@ frontend/
  - 존재하지 않는 ID: “세션을 찾을 수 없음” 안내 + [새 게임 시작] CTA
  - 네트워크 오류: 재시도/가이드 표시
 
- 현재 구현은 App에서 “새 게임 시작 → NewGameDialog → 세션 생성 시 Dashboard 렌더”까지 연결되어 있습니다. 위 제안(라우팅 기반 Landing/세션 복원/선택적 localStorage)을 반영하면 와이어프레임 의도와 완전히 일치하는 구조가 됩니다. 필요하시면 해당 구조로 리팩터링 PR을 준비하겠습니다.
+현재 코드는 라우팅 기반 흐름을 반영해 재구성되었습니다(랜딩 → `/sessions/:id` → 대시보드). 다음 이터레이션에서 월간 보고서 모달/이벤트 드로어/추이 화면을 추가합니다.
