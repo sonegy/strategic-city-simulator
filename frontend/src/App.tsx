@@ -1,14 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import { apiBaseUrl, getHealth } from './api/client';
-import NewGameDialog from './components/NewGameDialog';
-import type { StartSessionResponse } from './api/sessions';
-import Dashboard from './components/Dashboard';
+import { Routes, Route, Link } from 'react-router-dom';
+import Landing from './pages/Landing';
+import DashboardRoute from './pages/DashboardRoute';
 
 export default function App() {
   const [health, setHealth] = useState<string>('unknown');
   const base = useMemo(() => apiBaseUrl(), []);
-  const [open, setOpen] = useState(false);
-  const [session, setSession] = useState<StartSessionResponse | null>(null);
+  // Routing 기반으로 전환하여 App 레벨의 세션 상태는 제거
 
   useEffect(() => {
     getHealth()
@@ -37,30 +36,14 @@ export default function App() {
         </p>
       </section>
 
-      <section>
-        <h2>새 게임</h2>
-        <p className="hint">난이도를 선택해 새 게임 세션을 시작합니다.</p>
-        <div className="actions">
-          <button className="btn primary" onClick={() => setOpen(true)}>새 게임 시작</button>
-        </div>
-        {session && (
-          <div style={{ marginTop: 12 }}>
-            <p>세션이 생성되었습니다. 세션 ID: <code>{session.sessionId}</code> (난이도: {session.difficulty})</p>
-          </div>
-        )}
-      </section>
+      <nav style={{ marginBottom: 16 }}>
+        <Link className="btn" to="/">홈</Link>
+      </nav>
 
-      <NewGameDialog
-        open={open}
-        onClose={() => setOpen(false)}
-        onStarted={(res) => setSession(res)}
-      />
-
-      {session && (
-        <div style={{ marginTop: 16 }}>
-          <Dashboard sessionId={session.sessionId} initialScores={session.scores as any} />
-        </div>
-      )}
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/sessions/:id" element={<DashboardRoute />} />
+      </Routes>
     </div>
   );
 }
