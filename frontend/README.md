@@ -41,8 +41,16 @@ frontend/
 └─ src/
    ├─ main.tsx
    ├─ App.tsx
-   ├─ api/client.ts
-   └─ styles.css
+   ├─ styles.css
+   ├─ api/
+   │  ├─ client.ts
+   │  ├─ sessions.ts
+   │  ├─ simulations.ts
+   │  └─ types.ts
+   └─ components/
+      ├─ NewGameDialog.tsx
+      ├─ Dashboard.tsx
+      └─ BudgetPanel.tsx
 ```
 
 ## 백엔드 연동 메모
@@ -52,3 +60,27 @@ frontend/
 ## 이슈
 - 관련 이슈: [#41](https://github.com/sonegy/strategic-city-simulator/issues/41)
 
+## UX 제안: 초기 로딩 → 새 게임/기존 선택 → 대시보드
+와이어프레임(`docs/wireframes/README.md`) 기준으로, 초기 진입 시 다음 흐름을 권장합니다.
+
+- 첫 화면(Landing)
+  - 선택지: [새 게임 시작] / [기존 게임 선택]
+  - 새 게임: `NewGameDialog`를 열어 난이도 선택 → `POST /api/v1/sessions` 호출 → 세션 생성
+  - 기존 게임: 로컬 저장된 최근 세션 ID 또는 백엔드 목록(추가 예정)을 선택 → 해당 세션으로 진입
+
+- 세션 진입(Main Dashboard)
+  - 컴포넌트: `Dashboard`
+  - 기능: 지표 카드(현재 값/변화), 예산 슬라이더(`BudgetPanel`, 합계 자동 100%), [턴 진행] → `POST /api/v1/sessions/{id}/simulate`
+  - 이벤트 로그: 최근 턴 이벤트 표시
+
+- 상태 전이 제안(App 레벨)
+  - 상태 A(세션 없음): Landing + `NewGameDialog`
+  - 상태 B(세션 있음): `Dashboard` 렌더링
+  - 세션 지속성: `localStorage`에 `sessionId` 보관 → 재방문 시 “최근 세션 계속하기” 제공
+
+- 라우팅(선택)
+  - 간단 상태 전이로도 가능하나, 필요 시 `react-router` 도입 제안:
+    - `/` → Landing, `/sessions/:id` → Dashboard
+    - 브라우저 새로고침/공유 링크에 유리
+
+현재 구현은 App에서 “새 게임 시작 → NewGameDialog → 세션 생성 시 Dashboard 렌더”까지 연결되어 있습니다. 위 제안(Landing + 기존 세션 선택/지속성 + 선택적 라우팅)을 반영하면 와이어프레임 의도와 완전히 일치하는 구조가 됩니다. 필요하시면 해당 구조로 리팩터링 PR을 준비하겠습니다.
