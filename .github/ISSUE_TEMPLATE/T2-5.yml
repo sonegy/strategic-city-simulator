@@ -1,0 +1,78 @@
+name: Task - T2-5
+description: 난이도별 초기 예산 반영 (PRD v2.0 §6)
+title: "[T2-5] 난이도별 초기 예산 반영"
+labels: ["task", "backend"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Task 개요
+        PRD_expanded.md(§6 난이도별 파라미터)에 정의된 초기 예산을 Start Session 흐름에 반영합니다.
+        - Easy: 15억, Normal: 10억, Hard: 8억
+        - (선택) 세수 성장률, 투자 효율, 이벤트 빈도 파라미터도 함께 보관
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: 🔧 작업 범위
+      value: |
+        - 도메인: `GameSession`에 초기 예산(원 단위, `long`) 필드 추가 (예: `initialBudget`, `treasury` 등)
+        - 마이그레이션: `V2__difficulty_params.sql`로 컬럼 추가 (`initial_budget` [NOT NULL], (선택)`tax_growth_rate`, `invest_efficiency`, `event_frequency`)
+        - 서비스: `StartSessionService`가 난이도에 따라 초기 예산을 설정 및 저장
+        - API: `StartSessionResponse`에 초기 예산(및 선택 파라미터) 포함
+        - 문서: PRD 매핑 주석/README 보강
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 📦 산출물
+      value: |
+        - 도메인/리포지토리/서비스 변경 (필드 및 저장 로직)
+        - DB 마이그레이션 스크립트 `V2__difficulty_params.sql`
+        - DTO 변경 (`StartSessionResponse.initialBudget` 등)
+        - 단위 테스트: 난이도별 초기 예산 매핑 검증
+        - 간단한 통합 테스트(세션 생성 후 필드 영속 확인)
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: ✅ Definition of Done
+      options:
+        - label: 난이도(EASY/NORMAL/HARD)별 초기 예산이 정확히 설정된다 (15/10/8억)
+        - label: DB 컬럼 추가 및 마이그레이션 성공
+        - label: StartSessionResponse에 초기 예산이 노출된다
+        - label: 단위/통합 테스트 통과
+        - label: 간단 문서/주석으로 PRD 매핑 근거 명시
+
+  - type: textarea
+    id: api
+    attributes:
+      label: 🌐 API 변경 사항
+      value: |
+        - POST `/api/v1/sessions` 응답에 `initialBudget`(number; KRW) 필드 추가
+        - (선택) 향후 `/reports` 응답에 `treasury` 등 재정 지표 확장 고려
+
+  - type: textarea
+    id: migration
+    attributes:
+      label: 🗄️ 마이그레이션/데이터 고려
+      value: |
+        - 신규 컬럼 기본값: 난이도 미지정 레코드가 없도록 NOT NULL + 기본값(예: 0) 또는 마이그레이션 시 계산/세팅
+        - 기존 데이터: 현재는 개발 초기이므로 데이터 영향 최소
+
+  - type: textarea
+    id: tests
+    attributes:
+      label: 🧪 테스트 계획
+      value: |
+        - `StartSessionServiceTests`: 난이도별 초기 예산 매핑 검증
+        - `SessionsController` 통합 테스트: 201 Created 응답에 `initialBudget` 포함
+        - Flyway 마이그레이션 부트 테스트: 컨텍스트 로드 OK
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 📎 참고
+        - PRD_expanded.md §6 — 난이도별 파라미터 표
+        - 관련 이슈: (생성 후 링크)
