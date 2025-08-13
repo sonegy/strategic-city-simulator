@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { apiBaseUrl, getHealth } from './api/client';
 import NewGameDialog from './components/NewGameDialog';
 import type { StartSessionResponse } from './api/sessions';
+import Dashboard from './components/Dashboard';
 
 export default function App() {
   const [health, setHealth] = useState<string>('unknown');
@@ -54,6 +55,12 @@ export default function App() {
         onClose={() => setOpen(false)}
         onStarted={(res) => setSession(res)}
       />
+
+      {session && (
+        <div style={{ marginTop: 16 }}>
+          <Dashboard sessionId={session.sessionId} initialScores={session.scores as any} />
+        </div>
+      )}
     </div>
   );
 }
