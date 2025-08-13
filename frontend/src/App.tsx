@@ -1,9 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import { apiBaseUrl, getHealth } from './api/client';
+import NewGameDialog from './components/NewGameDialog';
+import type { StartSessionResponse } from './api/sessions';
 
 export default function App() {
   const [health, setHealth] = useState<string>('unknown');
   const base = useMemo(() => apiBaseUrl(), []);
+  const [open, setOpen] = useState(false);
+  const [session, setSession] = useState<StartSessionResponse | null>(null);
 
   useEffect(() => {
     getHealth()
@@ -16,7 +20,7 @@ export default function App() {
       <h1>Strategic City Simulator</h1>
       <p className="muted">Frontend Bootstrap (Vite + React)</p>
 
-      <section>
+      <section style={{ marginBottom: 16 }}>
         <h2>Backend 연결 상태</h2>
         <ul>
           <li>
@@ -31,7 +35,25 @@ export default function App() {
           <code>http://localhost:8080</code>으로 전달합니다.
         </p>
       </section>
+
+      <section>
+        <h2>새 게임</h2>
+        <p className="hint">난이도를 선택해 새 게임 세션을 시작합니다.</p>
+        <div className="actions">
+          <button className="btn primary" onClick={() => setOpen(true)}>새 게임 시작</button>
+        </div>
+        {session && (
+          <div style={{ marginTop: 12 }}>
+            <p>세션이 생성되었습니다. 세션 ID: <code>{session.sessionId}</code> (난이도: {session.difficulty})</p>
+          </div>
+        )}
+      </section>
+
+      <NewGameDialog
+        open={open}
+        onClose={() => setOpen(false)}
+        onStarted={(res) => setSession(res)}
+      />
     </div>
   );
 }
-
