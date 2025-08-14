@@ -28,7 +28,9 @@ public class GameSession {
 
     // PRD §6 난이도별 초기 예산(원) 및 현재 금고 잔액(원)
     // 마이그레이션 V2에서 컬럼 추가: initial_budget, treasury
+    @Column(name = "initial_budget", nullable = false)
     private Long initialBudget;
+    @Column(name = "treasury", nullable = false)
     private Long treasury;
 
     protected GameSession() {
@@ -63,6 +65,17 @@ public class GameSession {
     public void incrementMonth() {
         int cur = this.currentMonth == null ? 0 : this.currentMonth;
         this.currentMonth = cur + 1;
+    }
+
+    @PrePersist
+    protected void onCreateDefaults() {
+        if (this.initialBudget == null) {
+            this.initialBudget = 0L;
+        }
+        if (this.treasury == null) {
+            // 기본은 초기 예산과 동일하게 설정(없으면 0)
+            this.treasury = this.initialBudget == null ? 0L : this.initialBudget;
+        }
     }
 
     public Long getInitialBudget() {
