@@ -1,0 +1,45 @@
+{
+  "DEFENSE": {
+    "DIPLOMACY": -2,
+    "ECONOMY": -1,
+    "POLITICS": 1,
+    "CULTURE": 0,
+    "ENVIRONMENT": -1
+  },
+  "DIPLOMACY": {
+    "DEFENSE": -1,
+    "ECONOMY": 2,
+    "POLITICS": 1,
+    "CULTURE": 2,
+    "ENVIRONMENT": 0
+  },
+  "ECONOMY": {
+    "DEFENSE": 0,
+    "DIPLOMACY": 1,
+    "POLITICS": 2,
+    "CULTURE": 1,
+    "ENVIRONMENT": -2
+  },
+  "POLITICS": {
+    "DEFENSE": 1,
+    "DIPLOMACY": 1,
+    "ECONOMY": 2,
+    "CULTURE": 1,
+    "ENVIRONMENT": 0
+  },
+  "CULTURE": {
+    "DEFENSE": 0,
+    "DIPLOMACY": 2,
+    "ECONOMY": 1,
+    "POLITICS": 1,
+    "ENVIRONMENT": 0
+  },
+  "ENVIRONMENT": {
+    "DEFENSE": -1,
+    "DIPLOMACY": 0,
+    "ECONOMY": -2,
+    "POLITICS": 0,
+    "CULTURE": 0
+  }
+}
+
