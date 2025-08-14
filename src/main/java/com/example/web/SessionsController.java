@@ -48,7 +48,13 @@ public class SessionsController {
     public ResponseEntity<StartSessionResponse> start(@Validated @RequestBody StartSessionRequest request) {
         Difficulty difficulty = request.getDifficulty();
         var result = startSessionService.start(difficulty);
-        var body = new StartSessionResponse(result.sessionId(), result.difficulty(), result.scores());
+        var body = new StartSessionResponse(
+                result.sessionId(),
+                result.difficulty(),
+                result.scores(),
+                result.initialBudget(),
+                result.treasury()
+        );
         return ResponseEntity.created(URI.create("/api/v1/sessions/" + result.sessionId()))
                 .body(body);
     }

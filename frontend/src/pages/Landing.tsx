@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NewGameDialog from '../components/NewGameDialog';
+import type { StartSessionResponse } from '../api/sessions';
 
 export default function Landing() {
   const [open, setOpen] = useState(false);
@@ -43,7 +44,9 @@ export default function Landing() {
       <NewGameDialog
         open={open}
         onClose={() => setOpen(false)}
-        onStarted={(res) => navigate(`/sessions/${res.sessionId}`)}
+        onStarted={(res: StartSessionResponse) =>
+          navigate(`/sessions/${res.sessionId}`, { state: { sessionMeta: res } })
+        }
       />
     </>
   );

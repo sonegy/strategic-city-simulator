@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import Dashboard from '../components/Dashboard';
 import { getLatestReport } from '../api/reports';
 import type { CategoryType } from '../api/types';
+import type { StartSessionResponse } from '../api/sessions';
 
 export default function DashboardRoute() {
   const { id } = useParams();
   const sessionId = Number(id);
+  const location = useLocation();
+  const state = location.state as undefined | { sessionMeta?: StartSessionResponse };
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [scores, setScores] = useState<Record<CategoryType, number> | null>(null);
@@ -45,6 +48,14 @@ export default function DashboardRoute() {
   if (!scores) return null;
 
   return (
-    <Dashboard sessionId={sessionId} initialScores={scores} />
+    <Dashboard
+      sessionId={sessionId}
+      initialScores={scores}
+      meta={state?.sessionMeta ? {
+        difficulty: state.sessionMeta.difficulty,
+        initialBudget: state.sessionMeta.initialBudget,
+        treasury: state.sessionMeta.treasury,
+      } : undefined}
+    />
   );
 }
