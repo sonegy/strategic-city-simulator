@@ -26,6 +26,11 @@ public class GameSession {
 
     private LocalDateTime createdAt;
 
+    // PRD §6 난이도별 초기 예산(원) 및 현재 금고 잔액(원)
+    // 마이그레이션 V2에서 컬럼 추가: initial_budget, treasury
+    private Long initialBudget;
+    private Long treasury;
+
     protected GameSession() {
     }
 
@@ -58,5 +63,21 @@ public class GameSession {
     public void incrementMonth() {
         int cur = this.currentMonth == null ? 0 : this.currentMonth;
         this.currentMonth = cur + 1;
+    }
+
+    public Long getInitialBudget() {
+        return initialBudget;
+    }
+
+    public void setInitialBudget(Long initialBudget) {
+        this.initialBudget = initialBudget;
+    }
+
+    public Long getTreasury() {
+        return treasury;
+    }
+
+    public void setTreasury(Long treasury) {
+        this.treasury = treasury;
     }
 }

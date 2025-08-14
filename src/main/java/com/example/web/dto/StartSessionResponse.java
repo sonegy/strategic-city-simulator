@@ -13,11 +13,18 @@ public class StartSessionResponse {
     private Difficulty difficulty;
     @Schema(description = "초기 카테고리 점수(0~100)")
     private Map<CategoryType, Integer> scores;
+    @Schema(description = "난이도에 따른 초기 예산(원)")
+    private Long initialBudget;
+    @Schema(description = "현재 금고 잔액(원)")
+    private Long treasury;
 
-    public StartSessionResponse(Long sessionId, Difficulty difficulty, Map<CategoryType, Integer> scores) {
+    public StartSessionResponse(Long sessionId, Difficulty difficulty, Map<CategoryType, Integer> scores,
+                                Long initialBudget, Long treasury) {
         this.sessionId = sessionId;
         this.difficulty = difficulty;
         this.scores = scores;
+        this.initialBudget = initialBudget;
+        this.treasury = treasury;
     }
 
     public Long getSessionId() {
@@ -31,5 +38,12 @@ public class StartSessionResponse {
     public Map<CategoryType, Integer> getScores() {
         return scores;
     }
-}
 
+    public Long getInitialBudget() {
+        return initialBudget;
+    }
+
+    public Long getTreasury() {
+        return treasury;
+    }
+}

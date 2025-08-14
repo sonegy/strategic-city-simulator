@@ -25,6 +25,11 @@ public class StartSessionService {
     @Transactional
     public Result start(Difficulty difficulty) {
         GameSession session = new GameSession(difficulty, 0, LocalDateTime.now());
+
+        long initialBudget = mapInitialBudgetByDifficulty(difficulty);
+        session.setInitialBudget(initialBudget);
+        session.setTreasury(initialBudget);
+
         session = gameSessionRepository.save(session);
 
         EnumMap<CategoryType, Integer> initialScores = new EnumMap<>(CategoryType.class);
@@ -34,13 +39,22 @@ public class StartSessionService {
             categoryScoreRepository.save(new CategoryScore(c, score, session));
         }
 
-        return new Result(session.getId(), difficulty, initialScores);
+        return new Result(session.getId(), difficulty, initialScores, session.getInitialBudget(), session.getTreasury());
     }
 
     public record Result(
             Long sessionId,
             Difficulty difficulty,
-            Map<CategoryType, Integer> scores
+            Map<CategoryType, Integer> scores,
+            Long initialBudget,
+            Long treasury
     ) {}
-}
 
+    private long mapInitialBudgetByDifficulty(Difficulty difficulty) {
+        return switch (difficulty) {
+            case EASY -> 1_500_000_000L;   // 15억 원
+            case NORMAL -> 1_000_000_000L; // 10억 원
+            case HARD -> 800_000_000L;     // 8억 원
+        };
+    }
+}
