@@ -4,6 +4,8 @@ export interface StartSessionResponse {
   sessionId: number;
   difficulty: Difficulty;
   scores: Record<string, number>;
+  initialBudget: number; // 원 단위
+  treasury: number;      // 현재 금고 잔액(원)
 }
 
 import { apiBaseUrl } from './client';
@@ -22,4 +24,3 @@ export async function startSession(difficulty: Difficulty): Promise<StartSession
   }
   return (await res.json()) as StartSessionResponse;
 }
-

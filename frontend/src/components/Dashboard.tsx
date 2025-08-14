@@ -2,14 +2,16 @@ import { useMemo, useState } from 'react';
 import type { CategoryType } from '../api/types';
 import { CATEGORY_ORDER, CATEGORY_LABEL } from '../api/types';
 import BudgetPanel from './BudgetPanel';
+import { formatKRW } from '../utils/format';
 import { simulateMonth } from '../api/simulations';
 
 type Props = {
   sessionId: number;
   initialScores: Record<CategoryType, number>;
+  meta?: { difficulty?: string; initialBudget?: number; treasury?: number };
 };
 
-export default function Dashboard({ sessionId, initialScores }: Props) {
+export default function Dashboard({ sessionId, initialScores, meta }: Props) {
   const [scores, setScores] = useState<Record<CategoryType, number>>(initialScores);
   const [delta, setDelta] = useState<Record<CategoryType, number>>(() => {
     const d: Record<CategoryType, number> = { DEFENSE: 0, DIPLOMACY: 0, ECONOMY: 0, POLITICS: 0, CULTURE: 0, ENVIRONMENT: 0 };
@@ -51,6 +53,21 @@ export default function Dashboard({ sessionId, initialScores }: Props) {
 
   return (
     <div className="row" style={{ gap: 16 }}>
+      <div style={{ gridColumn: '1 / -1' }}>
+        <section>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div>
+              <strong>세션 #{sessionId}</strong>
+              {meta?.difficulty && <span className="hint" style={{ marginLeft: 8 }}>난이도: {meta.difficulty}</span>}
+            </div>
+            <div className="hint">
+              초기 예산: <strong>{formatKRW(meta?.initialBudget)}</strong>
+              <span style={{ margin: '0 6px' }}>|</span>
+              현재 잔액: <strong>{formatKRW(meta?.treasury)}</strong>
+            </div>
+          </div>
+        </section>
+      </div>
       <div>
         <section>
           <h2>지표 요약</h2>
