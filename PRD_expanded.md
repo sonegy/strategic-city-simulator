@@ -168,3 +168,46 @@ TABLE events (
 - 평균 플레이 시간: 20분 이상
 - 월→월 턴 진행률: 80% 이상
 - 게임 완료율: 60% 이상
+
+---
+
+## 11. 보강 사양(설계 가이드)
+
+### 11.1 재정 모델(월간 흐름)
+- 초기 예산(난이도): Easy 15억 / Normal 10억 / Hard 8억 → 세션 생성 시 `initialBudget`, `treasury`에 반영.
+- 월간 세수: `revenue_t = floor(revenue_{t-1} × (1 + growthRate_difficulty))` (PRD §6 성장률 기반). 초기 `revenue_0`는 난이도별 기본 세수로 설정(추후 표 정의).
+- 지출: `expense_t = monthlyBudget_t × ∑(ratio_k)`; 카테고리별 지출 = `monthlyBudget_t × ratio_k`.
+- 잔액: `treasury_t = treasury_{t-1} + revenue_t + grants_t - expense_t`.
+- 한도: 부채 허용 한도(예: -5억) 도달 시 경고/행동 제한(턴 진행 불가 또는 효율 페널티).
+
+### 11.2 지표 계산/상호작용
+- 자연 변화(`naturalDrift_k`), 투자 효율(`investmentEfficiency_k`), 상호작용 매트릭스(from→to, -3~+3).
+- 스케일링: `interactionDelta_k = (∑_from ratio_from × weight_from→k) × interactionScale`.
+- 기본 점수 업데이트: `next_k = clamp(current_k + natural_k + baseDelta×ratio_k×eff_k + interactionDelta_k, 0, 100)`.
+- 튜닝 지침: interactionScale은 0.5~2.0 범위에서 벤치마킹(100턴 안정성 검증 포함).
+
+### 11.3 이벤트 시스템 보강
+- 난이도별 빈도 스케일: Easy 0.8x / Normal 1.0x / Hard 1.2x(예시). `effectiveProb = baseProb × freqScale_difficulty`.
+- 조건 언어: `score(ECONOMY) > 70`, `month%12==0`, 합성식(AND/OR) 허용.
+- 외부화: `events.json` 스키마(이름, 유형, 조건, 확률, 영향 맵). 로드시 스키마 검증 및 실패 시 기본 세트로 폴백.
+
+### 11.4 데이터 스키마/버전 정책
+- 세션: `game_sessions(initial_budget BIGINT, treasury BIGINT, difficulty, current_month, created_at ...)`.
+- 월 스냅샷(선택): `finance_snapshots(session_id, year, month, revenue, expense, treasury)`로 리포트 속도 개선.
+- 마이그레이션 원칙: 배포 후 마이그레이션은 수정 금지, 변경 필요 시 `V{n+1}__patch.sql` 추가. 개발 중에는 repair 허용(local/dev/tc).
+
+### 11.5 API 계약(요약)
+- `POST /api/v1/sessions` → { sessionId, difficulty, scores, initialBudget, treasury }.
+- `POST /api/v1/sessions/{id}/simulate` → { before, after, delta, events, overallIndex, (추가 예정) financeDelta }.
+- `GET /api/v1/sessions/{id}/reports?year=&month=` → { scores, overall, events, cumulativeByType, (추가) finance: { revenue, expense, treasury } }.
+- (선택) `GET /api/v1/sessions/{id}` → 메타 복원용(difficulty, initialBudget, createdAt, currentMonth, treasury).
+
+### 11.6 UX/플로우 디테일
+- 랜딩: 새 게임 시작(NewGameDialog) / 기존 세션 ID 진입. ID 검증 실패 시 가이드 제공.
+- 대시보드: 상단 바에 세션/난이도/초기 예산/현재 잔액. 슬라이더 변경 시 예상 변화(±범위) 미리보기.
+- 접근성: 슬라이더 키보드 지원, 대비/포커스 스타일, 로딩/에러/빈 상태 표준화.
+
+### 11.7 밸런싱/KPI/테스트
+- 회귀: 고정 시드로 12개월 실행 스냅샷 비교(허용 오차 ±1~2pt). 재정·지표 동시 검증.
+- 부하: 턴 계산 < 200ms(로컬 기준), 1.2k턴까지 누적 안정성.
+- KPI 모니터링: 평균 플레이 20분, 월→월 진행률 80%+, 완료율 60%+. 밸런스 조정 시 A/B 시뮬 자동 리포트.
